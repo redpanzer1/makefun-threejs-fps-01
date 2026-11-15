@@ -227,7 +227,7 @@ export function createHud() {
       setText(el.hostiles, `HOSTILES ${hostiles}`, 'hostiles');
       el.timer.classList.toggle('low', t <= 10 && phase === 'live');
     },
-    setCompass,
+    setCompass: drawCompass,
     drawMinimap,
     killfeed(html) {
       const row = document.createElement('div');
