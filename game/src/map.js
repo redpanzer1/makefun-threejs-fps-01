@@ -16,7 +16,7 @@ export const MAP = {
     { x: -11, z: -19 },
     { x: -2, z: -18.5 },
     { x: 9, z: -19 },
-    { x: 20, z: -18.5 },
+    { x: 12, z: -19 }, // west of the site B container wall, open approach north
   ],
 };
 
@@ -34,7 +34,7 @@ export const BOXES = [
   [2.8, 0.8, 2.8, 0, 9.9, -2, 'accent'],
   [0.3, 4, 0.3, 0, 12.3, -2, 'darkwall'],
   // site A — silo yard (cylinders below) + crates + low walls
-  [3.6, 1.1, 1.2, -14, 0.55, -11, 'darkwall'],
+  [3.6, 1.1, 1.2, -9, 0.55, -13, 'darkwall'],
   [1.2, 1.1, 3.6, -25, 0.55, -10, 'darkwall'],
   [1.2, 1.2, 1.2, -23.5, 0.6, -12, 'ochre'],
   [1.2, 1.2, 1.2, -16.5, 0.6, -17.5, 'ochre'],
@@ -44,34 +44,34 @@ export const BOXES = [
   [6, 2.6, 2.4, 17, 1.3, -17.5, 'steel'],
   [6, 2.6, 2.4, 23, 1.3, -17.5, 'rust'],
   [6, 2.6, 2.4, 20, 3.9, -17.5, 'teal'],
-  [1.2, 1.2, 1.2, 15, 0.6, -11.5, 'ochre'],
   [1.2, 1.2, 1.2, 24.5, 0.6, -11, 'steel'],
+  [1.2, 1.2, 1.2, 16.5, 0.6, -11.5, 'ochre'],
   [2.4, 0.9, 1.2, 20, 0.45, -9.5, 'darkwall'],
   // west lane
   [6, 2.6, 2.4, -14, 1.3, 6, 'rust'],
   [6, 2.6, 2.4, -16, 1.3, -6, 'teal'],
-  [1.2, 1.2, 1.2, -10, 0.6, 10, 'ochre'],
+  [1.2, 1.2, 1.2, -10, 0.6, 11.5, 'ochre'],
   [1.2, 1.2, 1.2, -19, 0.6, 1, 'steel'],
   [2.4, 1.1, 0.6, -18, 0.55, -1.5, 'darkwall'],
-  [1.2, 1.2, 1.2, -8, 0.6, -4, 'rust'],
+  [1.2, 1.2, 1.2, -8, 0.6, -2.5, 'rust'],
   // east lane — warehouse block + containers
   [12, 4, 6, 16, 2, 4, 'darkwall'],
   [6, 2.6, 2.4, 14, 1.3, -8, 'ochre'],
   [1.2, 1.2, 1.2, 10, 0.6, 12, 'teal'],
   [1.2, 1.2, 1.2, 22, 0.6, 10, 'rust'],
   [2.4, 1.1, 0.6, 18, 0.55, -1.5, 'darkwall'],
-  [1.2, 1.2, 1.2, 8, 0.6, -5, 'steel'],
+  [1.2, 1.2, 1.2, 9, 0.6, -6, 'steel'],
   // mid lane
   [1.2, 1.2, 1.2, -4, 0.6, 6, 'teal'],
   [1.2, 1.2, 1.2, 4, 0.6, 6, 'rust'],
   [1.2, 1.2, 1.2, -4, 0.6, -7.5, 'ochre'],
   [1.2, 1.2, 1.2, 4, 0.6, -7.5, 'steel'],
-  [2.4, 1.1, 0.6, -3, 0.55, -11, 'darkwall'],
-  [2.4, 1.1, 0.6, 3, 0.55, -11, 'darkwall'],
+  [2.4, 1.1, 0.6, -3, 0.55, -12.5, 'darkwall'],
+  [2.4, 1.1, 0.6, 3, 0.55, -12.5, 'darkwall'],
   // spawn cover
   [2.4, 1.1, 0.6, -4, 0.55, 14, 'darkwall'],
   [2.4, 1.1, 0.6, 4, 0.55, 14, 'darkwall'],
-  [1.2, 1.2, 1.2, 0, 0.6, 11, 'ochre'],
+  [1.2, 1.2, 1.2, 0, 0.6, 7, 'ochre'],
 ];
 
 export const CYLINDERS = [
@@ -91,14 +91,14 @@ export const CYLINDERS = [
 export const NODES = [
   [0, 18], // 0 spawn
   [0, 12], // 1 mid-south
-  [-14, 8], // 2 west-mid
+  [-10, 8], // 2 west-mid (east of the rust container at -14,6)
   [14, 8], // 3 east-mid
-  [-5, -2], // 4 plaza west
-  [5, -2], // 5 plaza east
-  [-14, -6], // 6 west-north
+  [-6, -3], // 4 plaza west (clear of the tower base corners)
+  [6, -3], // 5 plaza east
+  [-10, -6], // 6 west-north
   [14, -6], // 7 east-north
-  [-14, -11], // 8 site A approach
-  [14, -11], // 9 site B approach
+  [-15, -9], // 8 site A approach (in the corridor south of the teal container)
+  [10, -11], // 9 site B approach (west of the ochre container at 14,-8)
   [-20, -14], // 10 site A
   [20, -14], // 11 site B
   [0, -12], // 12 north-mid
@@ -106,13 +106,15 @@ export const NODES = [
   [20, 12], // 14 east-south
   [-8, -8], // 15 mid-north-west
   [8, -8], // 16 mid-north-east
+  [25.5, 8], // 17 east gap south (around the warehouse's east end)
+  [25.5, -6], // 18 east gap north
 ];
 
 export const EDGES = [
   [0, 1], [0, 13], [0, 14], [1, 2], [1, 3], [1, 4], [1, 5],
-  [2, 6], [2, 13], [3, 7], [3, 14], [4, 6], [4, 15], [5, 7], [5, 16],
-  [6, 8], [7, 9], [8, 10], [8, 15], [9, 11], [9, 16],
-  [12, 15], [12, 16], [15, 8], [16, 9],
+  [2, 6], [2, 13], [3, 14], [3, 17], [4, 6], [4, 15], [5, 7], [5, 16],
+  [6, 8], [7, 18], [8, 10], [8, 15], [9, 11], [9, 16],
+  [12, 15], [12, 16], [15, 8], [16, 9], [17, 18], [18, 7],
 ];
 
 const ADJ = NODES.map(() => []);

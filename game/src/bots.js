@@ -147,7 +147,9 @@ export function createBots(scene, world, state) {
         setPath(bot, bot.patrolRoute[0]);
       }
       bot.patrolIdx = 0;
-      bot.holdUntil = 0;
+      // The first hold must expire, or a holding bot would scan its node
+      // forever and never walk its route.
+      bot.holdUntil = state.time + rng.range(1.5, 3);
     }
   }
 
@@ -321,7 +323,9 @@ export function createBots(scene, world, state) {
         }
       } else if (bot.state === 'patrol') {
         if (followPath(bot, WALK_SPEED, dt)) {
-          bot.patrolIdx = (bot.patrolIdx + 1) % bot.patrolRoute.length;
+          // Leg done: hold here. patrolIdx advances only when the next leg
+          // starts (in the hold branch) — advancing here too skipped every
+          // other route node and stranded holders on their own node.
           bot.holdUntil = time + rng.range(1.5, 3);
           bot.state = 'hold';
         }
